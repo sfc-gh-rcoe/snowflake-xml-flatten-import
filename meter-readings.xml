@@ -1,0 +1,222 @@
+<?sml version="1.0"?>
+<?xml:stylesheet type="text/xsl" href="meter-readings.xml"?>
+<Channels>
+	<Channel StartDate="2023-09-19T00:00:00-04:00" EndDate="2023-09-20T00:00:00-04:00" TimeZone="EasternUS" IsRegister="false">
+		<ChannelID ServicePointChannelID="010210577489E00010001:1" />
+		<ContiguousIntervalSets>
+			<ContiguousIntervalSet NumberOfReadings="96">
+				<TimePerod StartTime="2023-09-19T00:00:00-04:00" EndTime="2023-09-20T00:00:00-04:00" />
+				<Readings>
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+				</Readings>
+			</ContiguousIntervalSet>
+		</ContiguousIntervalSets>
+	</Channel>
+	<Channel StartDate="2023-09-19T00:00:00-04:00" EndDate="2023-09-20T00:00:00-04:00" TimeZone="EasternUS" IsRegister="false">
+		<ChannelID ServicePointChannelID="020410577489E00010001:2" />
+		<ContiguousIntervalSets>
+			<ContiguousIntervalSet NumberOfReadings="96">
+				<TimePerod StartTime="2023-09-18T00:00:00-04:00" EndTime="2023-09-20T00:00:00-04:00" />
+				<Readings>
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.360" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.260" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.860" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.260" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.260" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.960" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.460" STATUSREF="2" />
+					<Reading VALUE="0.260" STATUSREF="2" />
+					<Reading VALUE="1.860" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.660" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.560" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+					<Reading VALUE="0.060" STATUSREF="2" />
+					<Reading VALUE="0.160" STATUSREF="2" />
+					<Reading VALUE="1.160" STATUSREF="2" />
+				</Readings>
+			</ContiguousIntervalSet>
+		</ContiguousIntervalSets>
+	</Channel>
+</Channels>

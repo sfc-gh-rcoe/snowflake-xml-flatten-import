@@ -1,7 +1,8 @@
 from snowflake.snowpark import Session
+from snowflake.snowpark.types import StructType, StringType, TimestampType, FloatType, StructField, VariantType
 import snowflake.snowpark.files as files
+import snowflake.snowpark.functions as F
 from dotenv import load_dotenv
-from snowflake.snowpark.functions import col
 from collections import OrderedDict
 from datetime import datetime
 import xmltodict
@@ -70,38 +71,65 @@ def main(stage_name = sys.argv[1], input_file_name = sys.argv[2], output_table_n
     my_df = session.createDataFrame(s)
 
     # Save the Snowpark dataframe to a Snowflake table
-    my_df.write.mode("overwrite").save_as_table("{}".format(output_table_name))
+    # my_df.write.mode("overwrite").save_as_table("{}".format(output_table_name))
 
     # Let's craft some SQL with an eye toward creating a table that is a flattened representation of the XML.  Up to now, the Snowflake tables use a single VARIANT datatype, which embeds JSON
-    the_select_string = "SELECT {} FROM {}".format("CHANNELS_CHANNEL['@StartDate']::TIMESTAMP as READING_STARTDATE, CHANNELS_CHANNEL['@EndDate']::TIMESTAMP as READING_ENDDATE, CHANNELS_CHANNEL['@TimeZone']::VARCHAR as CH_TIMEZONE, CHANNELS_CHANNEL['ChannelID']['@ServicePointChannelID']::VARCHAR as SERVICEPOINTCHANNELID, CHANNELS_CHANNEL['ContiguousIntervalSets'] as contig_interval_sets, CHANNELS_CHANNEL['ContiguousIntervalSets']['ContiguousIntervalSet'] as contig_interval_set, CHANNELS_CHANNEL['ContiguousIntervalSets']['ContiguousIntervalSet']['Readings'], CHANNELS_CHANNEL['ContiguousIntervalSets']['ContiguousIntervalSet']['Readings']['Reading']", output_table_name)
 
-    # my_df.show()
-    my_df2 = session.sql(the_select_string)
-    # my_df2 = my_df.select(col("CHANNELS_CHANNEL:['@StartDate']").as_("READING_STARTDATE"))
+    my_df2 = my_df.select(F.col("CHANNELS_CHANNEL")["@StartDate"].as_("READING_STARTDATE"),\
+            F.col("CHANNELS_CHANNEL")["@EndDate"].as_("READING_ENDDATE"),\
+            F.col("CHANNELS_CHANNEL")["@TimeZone"].as_("CH_TIMEZONE"),\
+            F.col("CHANNELS_CHANNEL")["ChannelID"]["@ServicePointChannelID"].as_("SERVICEPOINTCHANNELID"),\
+            F.col("CHANNELS_CHANNEL")["ContiguousIntervalSets"].as_("contig_interval_sets"),\
+            F.col("CHANNELS_CHANNEL")["ContiguousIntervalSets"]["ContiguousIntervalSet"].as_("contig_interval_set"),\
+            F.col("CHANNELS_CHANNEL")["ContiguousIntervalSets"]["ContiguousIntervalSet"]["Readings"].as_("readings"),\
+            F.col("CHANNELS_CHANNEL")["ContiguousIntervalSets"]["ContiguousIntervalSet"]["Readings"]["Reading"].as_("reading")
+            )
     # my_df2.show()
 
     # Save a table representing the flattend version of the XML imput
-    my_df2.write.mode("overwrite").save_as_table("{}".format(output_table_name + "_flat"))
+    # my_df2.write.mode("overwrite").save_as_table("{}".format(output_table_name + "_flat"))
    
     # Now, we need to further flatten the VARIANT column that contains the channel readings.
-    the_select_string_morph = "SELECT {} FROM {} a, LATERAL FLATTEN (input => a.contig_interval_set) b, LATERAL FLATTEN (input => a.\"{}\") p, LATERAL FLATTEN (input => p.value) q WHERE the_measure < 2 and mon_start is not null".format("reading_startdate, reading_enddate, ch_timezone, servicepointchannelid, contig_interval_sets, contig_interval_set, q.value::float as the_measure, b.value['@StartTime']::TIMESTAMP as MON_START, b.value['@EndTime']::TIMESTAMP as MON_END", output_table_name + "_flat", "CHANNELS_CHANNEL['CONTIGUOUSINTERVALSETS']['CONTIGUOUSINTERVALSET']['READINGS']['READING']")
 
-    my_df3 = session.sql(the_select_string_morph)
-    # my_df3 = my_df2.select(col("READING_STARTDATE"), col("READING_ENDDATE"), col("CH_TIMEZONE"), col("SERVICEPOINTCHANNELID"), col("contig_interval_sets"), col("contig_interval_set"))
+    my_df3 = my_df2.select(F.col("READING_STARTDATE").cast(TimestampType()).as_("READING_STARTDATE"),\
+           F.col("READING_ENDDATE").cast(TimestampType()).as_("READING_ENDDATE"),\
+            F.col("CH_TIMEZONE").cast(StringType()).as_("CH_TIMEZONE"),\
+            F.col("SERVICEPOINTCHANNELID").cast(StringType()).as_("SERVICEPOINTCHANNELID"),\
+            F.col("contig_interval_sets").cast(VariantType()).as_("contig_interval_sets"),\
+            F.col("contig_interval_set").cast(VariantType()).as_("contig_interval_set"),\
+            F.col("readings").cast(VariantType()).as_("readings"),\
+            F.col("reading").cast(VariantType()).as_("reading"),\
+            F.col("reading")[1]["@VALUE"].cast(StringType()).as_("M_VALUE"))
 
+    split_to_table = F.table_function("split_to_table")
+    ## my_df3 = my_df3.join_table_function(split_to_table(F.col("reading")[1]["@VALUE"], F.lit(" ")))
+    my_df3 = my_df3.join_table_function("flatten", my_df3["reading"]).drop(["SEQ", "PATH", "INDEX", "THIS"])
+    my_df4 = my_df3.select(F.col("READING_STARTDATE"),\
+            F.col("READING_ENDDATE"),\
+            F.col("CH_TIMEZONE"),\
+            F.col("SERVICEPOINTCHANNELID"),\
+            # F.col("contig_interval_set")["TimePeriod"]["@StartTime"].cast(TimestampType()).as_("MON_START"),\
+            F.col("contig_interval_set")["TimePerod"]["@StartTime"].cast(TimestampType()).as_("MON_START"),\
+            # F.col("contig_interval_set")["TimePeriod"]["@EndTime"].cast(TimestampType()).as_("MON_END"),\
+            F.col("contig_interval_set")["TimePerod"]["@EndTime"].cast(TimestampType()).as_("MON_END"),\
+            F.col("VALUE")["@VALUE"].cast(FloatType()).as_("THE_MEASURE")).filter(F.col("READING_STARTDATE").isNotNull())
     # Save a GOLD version of the table, which will have all pertinent data elements represented by individual columns
-    my_df3.write.mode("overwrite").save_as_table("{}".format(output_table_name + "_stage"))
+    # my_df3.write.mode("overwrite").save_as_table("{}".format(output_table_name + "_stage"))
 
-    the_select_string_stage = "SELECT {} FROM {}".format("ch_timezone, servicepointchannelid, the_measure, mon_start, mon_end", output_table_name + "_stage")
 
-    my_df4 = session.sql(the_select_string_stage)
+    my_df4.write.mode("overwrite").save_as_table("{}".format(output_table_name + "_stage"))
 
-    my_df4.show(10)
-    
-    result = session.sql("DROP TABLE {}".format(output_table_name)).collect()
-    for x in range(len(result)):
-        print("{}\n".format(result[x]))
-    result = session.sql("DROP TABLE {}".format(output_table_name + "_flat")).collect()
-    for x in range(len(result)):
-        print("{}\n".format(result[x]))
+
+
+#
+# Entrypoint
+#
+#
 main()
+
+
+
+
+
+
+

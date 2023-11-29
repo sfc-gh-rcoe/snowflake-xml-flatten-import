@@ -41,7 +41,7 @@ def flatten_dict(d):
 	return OrderedDict(items())
 
     
-def main(input_file_name): 
+def write_xml_to_table(input_file_name): 
 
 	#
 	# Before running the following line, a determination must be made for how to populate the 'my_creds' dictionary with authentication credentials
@@ -54,7 +54,8 @@ def main(input_file_name):
     the_date_suffix = the_time.strftime("%m%d%Y_%H_%M_%S")
 	# stage_name = "@XMLTEST"
 	# input_file_name = "books-sample.xml"
-    # output_table_name = output_table_name + "_" + the_date_suffix
+    output_table_name = "METER_READINGS"
+    output_table_name = output_table_name + "_" + the_date_suffix
     file_url = "{}".format(input_file_name)
     with open(file_url, 'r', encoding='utf-8') as f:
         xmlcontent_read = f.read()
@@ -120,15 +121,8 @@ def main(input_file_name):
 
 
     # my_df4.write.mode("overwrite").save_as_table("{}".format(output_table_name + "_stage"))
-    return my_df4.to_pandas()
-
-
-
-#
-# Entrypoint
-#
-#
-# main()
+    my_df5 = my_df4.write.mode("overwrite").save_as_table(table_name=output_table_name, table_type='transient')
+    return output_table_name
 
 st.title("###XML Importer")
 
@@ -138,23 +132,15 @@ m_session1 = Session.builder.configs(my_creds).create()
 record_count = 0
 
 uploaded_files = st.file_uploader(label = "Select the file(s) against which to match", accept_multiple_files=True, type = ['xml'])
-t_df = pd.DataFrame()
+t_df = m_session1.create_dataframe(data=[[1,2]], schema=['a', 'b'])
 if ((uploaded_files)):
-    t_df = pd.DataFrame()
+    l_df = m_session1.create_dataframe(data=[[1,2]], schema=['a', 'b'])
     for t_file in uploaded_files:
         if t_file is not None:
             amt_of_data = t_file.getvalue()
-            # st.write(amt_of_data)
-
-            # str_io = StringIO(t_file.getvalue().decode("utf-8"))
-            # st.write(str_io)
-
-            # str_data = str_io.read()
-            # st.write(str_data)
-            t_df = t_df.append(main(t_file.name))
-            # df = pd.read_csv(t_file)
-            # t_df = t_df.append(df)
-    st.dataframe(t_df)
+            t_name = write_xml_to_table(t_file.name)
+            t_df = m_session1.table(t_name)
+    st.dataframe(t_df.limit(25).toPandas())
 
 
 
